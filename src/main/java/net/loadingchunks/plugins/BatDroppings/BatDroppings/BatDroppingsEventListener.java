@@ -62,8 +62,8 @@ public class BatDroppingsEventListener implements Listener {
 		if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
 		{
 			double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
-
-			if(give < 0.1 && give > -0.1)
+			
+			if(Double.compare(give, 0.0) == 0)
 				return;
 			
 			if(event.getEntity() instanceof Slime)

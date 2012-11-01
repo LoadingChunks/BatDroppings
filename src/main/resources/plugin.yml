@@ -3,6 +3,8 @@ main: net.loadingchunks.plugins.BatDroppings.BatDroppings.BatDroppings
 version: 0.1
 depend: [Vault]
 author: Cue
+website: http://loadingchunks.net
+
 
 commands:
    bd:
