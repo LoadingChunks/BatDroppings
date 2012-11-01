@@ -4,5 +4,7 @@ version: 0.1
 
 commands:
    bd:
-      description: Gets and Sets money drops
-      usage: /bd <mob> <value>
+      description: Modifies money drops and reloads config.
+      usage: 
+        -  /bd set <mob> <value>
+        -  /bd reload

@@ -17,6 +17,7 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,9 +33,37 @@ public class BatDroppingsCommandExecutor implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("bd")) {
-        	plugin.getLogger().info("command used");
-            //do something
-            return true;
+        	if(args.length == 0)
+        		return false;
+        	else if(args[0].equalsIgnoreCase("reload"))
+        	{
+        		if(sender.isOp())
+        		{
+        			this.plugin.reloadConfig();
+        			sender.sendMessage("BatDroppings Config Reloaded!");
+        		} else {
+        			sender.sendMessage("You must be an op to use this command.");
+        		}
+        		return true;
+        	} else if(args[0].equalsIgnoreCase("set"))
+        	{
+        		if(sender.isOp())
+        		{
+        			if(args.length == 3 && LivingEntities.valueOf(args[1].toUpperCase()) != null)
+        			{
+        				double value = Double.valueOf(args[2]);
+        				this.plugin.getConfig().set("drops." + args[1], value);
+        				this.plugin.saveConfig();
+        				sender.sendMessage(ChatColor.GOLD + " now drops $" + ChatColor.GOLD);
+        			} else {
+        				sender.sendMessage("Please enter a valid mob type and value.");
+        				return false;
+        			}
+        		} else {
+        			sender.sendMessage("You must be an op to use this command.");
+        		}
+        		return true;
+        	}
         }
         return false;
     }

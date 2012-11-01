@@ -17,7 +17,10 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import net.milkbowl.vault.economy.Economy;
+
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BatDroppings extends JavaPlugin {
@@ -26,13 +29,23 @@ public class BatDroppings extends JavaPlugin {
 	private BatDroppingsCommandExecutor commandExecutor;
 	private BatDroppingsEventListener eventListener;
 	//ClassListeners
+	
+	public Economy eco = null;
 
 	public void onDisable() {
 		// add any code you want to be executed when your plugin is disabled
 	}
 
-	public void onEnable() { 
+	public void onEnable() {
 		PluginManager pm = this.getServer().getPluginManager();
+		
+		RegisteredServiceProvider<Economy> eco = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+		
+		if(eco == null)
+		{
+			this.getLogger().warning("[BatDroppings] Vault not found, disabling.");
+			pm.disablePlugin(this);
+		}
 		
 		this.commandExecutor = new BatDroppingsCommandExecutor(this);
 		this.eventListener = new BatDroppingsEventListener(this);
@@ -45,7 +58,8 @@ public class BatDroppings extends JavaPlugin {
 
 		for(LivingEntities l : LivingEntities.values())
 		{
-			this.getConfig().addDefault(l.toString(), 0);
+			if(!this.getConfig().contains("drops." + l.toString()))
+				this.getConfig().addDefault(l.toString(), 0.0);				
 		}
 		
 		this.saveConfig();
