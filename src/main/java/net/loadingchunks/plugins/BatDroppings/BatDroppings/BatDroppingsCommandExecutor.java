@@ -32,7 +32,7 @@ public class BatDroppingsCommandExecutor implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("bd")) {
-	    plugin.getLogger().info("command used");
+        	plugin.getLogger().info("command used");
             //do something
             return true;
         }

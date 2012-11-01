@@ -34,7 +34,7 @@ public class BatDroppings extends JavaPlugin {
 	public void onEnable() { 
 		PluginManager pm = this.getServer().getPluginManager();
 
-		getCommand("command").setExecutor(commandExecutor);
+		getCommand("bd").setExecutor(commandExecutor);
 
 		// you can register multiple classes to handle events if you want
 		// just call pm.registerEvents() on an instance of each class
