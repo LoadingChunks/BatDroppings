@@ -41,7 +41,7 @@ public class BatDroppings extends JavaPlugin {
 		
 		RegisteredServiceProvider<Economy> economy = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
 		
-		if(eco == null)
+		if(economy == null)
 		{
 			this.getLogger().warning("[BatDroppings] Vault not found, disabling.");
 			pm.disablePlugin(this);
