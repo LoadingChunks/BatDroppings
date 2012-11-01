@@ -22,6 +22,7 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -56,7 +57,7 @@ public class BatDroppingsEventListener implements Listener {
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
-		if(!(event.getEntity() instanceof Monster))
+		if(!(event.getEntity() instanceof Monster) && !(event.getEntity() instanceof Animals))
 			return;
 		
 		if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
@@ -66,10 +67,15 @@ public class BatDroppingsEventListener implements Listener {
 			if(Double.compare(give, 0.0) == 0)
 				return;
 			
+			this.plugin.getLogger().info("[BatDroppings] Is not 0.");
+			
 			if(event.getEntity() instanceof Slime)
 				give = give * (double)((Slime)event.getEntity()).getSize();
 			
+			this.plugin.getLogger().info("[BatDroppings] Depositing");
 			this.plugin.eco.depositPlayer(event.getEntity().getKiller().getName(), give);
+			
+			this.plugin.getLogger().info("[BatDroppings] Sending message.");
 			
 			event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
 		} else {
