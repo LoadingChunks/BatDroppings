@@ -18,12 +18,16 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
  */
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 public class BatDroppingsEventListener implements Listener {
 
@@ -43,5 +47,29 @@ public class BatDroppingsEventListener implements Listener {
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent event) {
 		Bukkit.getServer().broadcastMessage("Player " + event.getPlayer().getName() + " placed " + event.getBlock().getType() + " at " + event.getBlock().getLocation());
+	}
+	
+	@EventHandler
+	public void onEntityDeath(EntityDeathEvent event)
+	{
+		if(!event.getEntity().getKiller().isOnline())
+			return;
+		
+		if(!(event.getEntity() instanceof Monster))
+			return;
+		
+		if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
+		{
+			double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
+			
+			if(event.getEntity() instanceof Slime)
+				give = give * (double)((Slime)event.getEntity()).getSize();
+			
+			this.plugin.eco.depositPlayer(event.getEntity().getKiller().getName(), give);
+			
+			event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
+		} else {
+			this.plugin.getLogger().info("Unkown monster type: " + event.getEntityType().getName());
+		}
 	}
 }

@@ -54,7 +54,7 @@ public class BatDroppingsCommandExecutor implements CommandExecutor {
         				double value = Double.valueOf(args[2]);
         				this.plugin.getConfig().set("drops." + args[1].toUpperCase(), value);
         				this.plugin.saveConfig();
-        				sender.sendMessage(ChatColor.GOLD + args[1].toUpperCase() + " now drops " + ChatColor.GOLD + this.plugin.eco.currencyNameSingular() + value);
+        				sender.sendMessage(ChatColor.GOLD + args[1].toUpperCase() + " now drops " + ChatColor.GOLD + value);
         			} else {
         				sender.sendMessage("Please enter a valid mob type and value.");
         				return false;
