@@ -45,6 +45,7 @@ public class BatDroppings extends JavaPlugin {
 		{
 			this.getLogger().warning("[BatDroppings] Vault not found, disabling.");
 			pm.disablePlugin(this);
+			return;
 		}
 		
 		this.eco = economy.getProvider();
