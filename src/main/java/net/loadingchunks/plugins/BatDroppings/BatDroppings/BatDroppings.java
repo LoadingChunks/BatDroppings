@@ -62,6 +62,7 @@ public class BatDroppings extends JavaPlugin {
 				this.getConfig().addDefault(l.toString(), 0.0);				
 		}
 		
+		this.getConfig().options().copyDefaults(true);
 		this.saveConfig();
 	}
 }
