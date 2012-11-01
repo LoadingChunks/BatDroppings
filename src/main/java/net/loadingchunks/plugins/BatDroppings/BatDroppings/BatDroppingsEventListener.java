@@ -38,18 +38,6 @@ public class BatDroppingsEventListener implements Listener {
 	public BatDroppingsEventListener(BatDroppings plugin) {
 		this.plugin = plugin;
 	}
-
-	// This is just one possible event you can hook.
-	// See http://jd.bukkit.org/apidocs/ for a full event list.
-
-	// All event handlers must be marked with the @EventHandler annotation 
-	// The method name does not matter, only the type of the event parameter
-	// is used to distinguish what is handled.
-
-	@EventHandler
-	public void onBlockPlace(BlockPlaceEvent event) {
-		Bukkit.getServer().broadcastMessage("Player " + event.getPlayer().getName() + " placed " + event.getBlock().getType() + " at " + event.getBlock().getLocation());
-	}
 	
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
