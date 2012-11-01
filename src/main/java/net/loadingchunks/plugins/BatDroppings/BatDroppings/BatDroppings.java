@@ -59,7 +59,7 @@ public class BatDroppings extends JavaPlugin {
 		for(LivingEntities l : LivingEntities.values())
 		{
 			if(!this.getConfig().contains("drops." + l.toString()))
-				this.getConfig().addDefault(l.toString(), 0.0);				
+				this.getConfig().addDefault("drops." + l.toString(), 0.0);				
 		}
 		
 		this.getConfig().options().copyDefaults(true);
