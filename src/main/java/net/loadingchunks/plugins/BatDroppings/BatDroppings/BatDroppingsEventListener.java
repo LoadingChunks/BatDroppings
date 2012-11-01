@@ -63,7 +63,7 @@ public class BatDroppingsEventListener implements Listener {
 		{
 			double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
 
-			if(give == 0)
+			if(give < 0.1 && give > -0.1)
 				return;
 			
 			if(event.getEntity() instanceof Slime)
