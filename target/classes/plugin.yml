@@ -1,0 +1,8 @@
+name: BatDroppings
+main: net.loadingchunks.plugins.BatDroppings.BatDroppings.BatDroppings
+version: 0.1
+
+commands:
+   command:
+      description: A Command
+      usage: /<command> 
