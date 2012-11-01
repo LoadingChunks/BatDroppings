@@ -3,6 +3,6 @@ main: net.loadingchunks.plugins.BatDroppings.BatDroppings.BatDroppings
 version: 0.1
 
 commands:
-   bm:
+   bd:
       description: Gets and Sets money drops
-      usage: /bm <mob> <value>
+      usage: /bd <mob> <value>
