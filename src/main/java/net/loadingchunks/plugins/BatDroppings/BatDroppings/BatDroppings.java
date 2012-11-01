@@ -39,13 +39,15 @@ public class BatDroppings extends JavaPlugin {
 	public void onEnable() {
 		PluginManager pm = this.getServer().getPluginManager();
 		
-		RegisteredServiceProvider<Economy> eco = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+		RegisteredServiceProvider<Economy> economy = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
 		
 		if(eco == null)
 		{
 			this.getLogger().warning("[BatDroppings] Vault not found, disabling.");
 			pm.disablePlugin(this);
 		}
+		
+		this.eco = economy.getProvider();
 		
 		this.commandExecutor = new BatDroppingsCommandExecutor(this);
 		this.eventListener = new BatDroppingsEventListener(this);

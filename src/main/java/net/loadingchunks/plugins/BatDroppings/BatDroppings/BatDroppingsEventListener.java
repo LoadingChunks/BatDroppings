@@ -23,6 +23,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,7 +53,7 @@ public class BatDroppingsEventListener implements Listener {
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
 	{
-		if(!event.getEntity().getKiller().isOnline())
+		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
 		if(!(event.getEntity() instanceof Monster))
