@@ -23,8 +23,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BatDroppings extends JavaPlugin {
 
 	//ClassListeners
-	private final BatDroppingsCommandExecutor commandExecutor = new BatDroppingsCommandExecutor(this);
-	private final BatDroppingsEventListener eventListener = new BatDroppingsEventListener(this);
+	private BatDroppingsCommandExecutor commandExecutor;
+	private BatDroppingsEventListener eventListener;
 	//ClassListeners
 
 	public void onDisable() {
@@ -33,6 +33,9 @@ public class BatDroppings extends JavaPlugin {
 
 	public void onEnable() { 
 		PluginManager pm = this.getServer().getPluginManager();
+		
+		this.commandExecutor = new BatDroppingsCommandExecutor(this);
+		this.eventListener = new BatDroppingsEventListener(this);
 
 		getCommand("bd").setExecutor(commandExecutor);
 
