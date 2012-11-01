@@ -44,5 +44,7 @@ public class BatDroppings extends JavaPlugin {
 		{
 			this.getConfig().addDefault(l.toString(), 0);
 		}
+		
+		this.saveConfig();
 	}
 }
