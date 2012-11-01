@@ -53,7 +53,7 @@ public class BatDroppingsEventListener implements Listener {
 	
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
-	{
+	{	
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
@@ -62,6 +62,9 @@ public class BatDroppingsEventListener implements Listener {
 		
 		if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
 		{
+			if(!event.getEntity().getKiller().hasPermission("bd.loot." + event.getEntityType().getName()))
+				return;
+
 			double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
 			
 			if(Double.compare(give, 0.0) == 0)
