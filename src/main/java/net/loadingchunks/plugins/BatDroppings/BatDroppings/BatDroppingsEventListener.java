@@ -42,6 +42,7 @@ public class BatDroppingsEventListener implements Listener {
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
 	{	
+		this.plugin.getLogger().info("Died: " + event.getEntityType().getName());
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
@@ -61,6 +62,7 @@ public class BatDroppingsEventListener implements Listener {
 				
 				if(event.getEntity() instanceof Slime)
 				{
+					this.plugin.getLogger().info("Slime.");
 					give = give * (double)((Slime)event.getEntity()).getSize();
 				}
 	

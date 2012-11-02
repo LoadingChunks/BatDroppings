@@ -2,12 +2,13 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
 
 public enum LivingEntities {
 	PIG,COW,MUSHROOMCOW,CHICKEN,BAT,SHEEP,SNOWMAN,IRON_GOLEM,SQUID,VILLAGER,WOLF,
-	ZOMBIE,SKELETON,CREEPER,SPIDER,CAVE_SPIDER,
+	ZOMBIE,SKELETON,CREEPER,SPIDER,CAVESPIDER,
 	SLIME, SILVERFISH,
 	BLAZE,WITHER_SKELETON,GHAST,PIG_ZOMBIE,MAGMA_CUBE,
 	ENDERMAN,ENDERDRAGON,
 	WITHER,
-	GIANT;
+	GIANT,
+	WITCH;
 	
 	public static final int length = LivingEntities.values().length;
 	private final boolean defaultEnabled;
