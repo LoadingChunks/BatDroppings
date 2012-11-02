@@ -48,6 +48,9 @@ public class BatDroppingsEventListener implements Listener {
 		
 		if(!(event.getEntity() instanceof LivingEntity))
 			return;
+		
+		if(event.getEntity() instanceof Player)
+			return;
 				
 		try {
 			if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
