@@ -48,6 +48,8 @@ public class BatDroppings extends JavaPlugin {
 				this.getConfig().addDefault("drops." + l.toString(), 0.0);				
 		}
 		
+		this.getConfig().addDefault("modifiers.slime", 0.5);
+		
 		this.getConfig().options().copyDefaults(true);
 		this.saveConfig();
 	}

@@ -62,12 +62,12 @@ public class BatDroppingsEventListener implements Listener {
 				
 				if(event.getEntity() instanceof Slime)
 				{
-					give = give * (double)((Slime)event.getEntity()).getSize();
+					give = give * (double)((Slime)event.getEntity()).getSize() * this.plugin.getConfig().getDouble("modifiers.slime");
 				}
 	
 				this.plugin.eco.depositPlayer(event.getEntity().getKiller().getName(), give);
 				
-				event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
+				//event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
 			} else {
 				this.plugin.getLogger().warning("Unkown monster type: " + event.getEntityType().getName());
 			}
