@@ -48,7 +48,7 @@ public class BatDroppingsEventListener implements Listener {
 		
 		this.plugin.getLogger().info("Killed: " + event.getEntityType().getName());
 		
-		if(!(event.getEntity() instanceof Monster) && !(event.getEntity() instanceof Animals))
+		if(!(event.getEntity() instanceof LivingEntity))
 			return;
 		
 		this.plugin.getLogger().info("Monster Died: " + event.getEntityType().getName());
@@ -64,7 +64,7 @@ public class BatDroppingsEventListener implements Listener {
 				if(Double.compare(give, 0.0) == 0)
 					return;
 				
-				if(event.getEntity() instanceof Slime)
+				if(event.getEntityType().getName().)
 				{
 					this.plugin.getLogger().info("Slime.");
 					give = give * (double)((Slime)event.getEntity()).getSize();
