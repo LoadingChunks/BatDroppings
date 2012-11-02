@@ -48,24 +48,31 @@ public class BatDroppingsEventListener implements Listener {
 		if(!(event.getEntity() instanceof Monster) && !(event.getEntity() instanceof Animals))
 			return;
 		
-		if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
+		try {
+			if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
+			{
+				if(!event.getEntity().getKiller().hasPermission("bd.loot." + event.getEntityType().getName()))
+					return;
+	
+				double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
+				
+				if(Double.compare(give, 0.0) == 0)
+					return;
+				
+				if(event.getEntity() instanceof Slime)
+				{
+					give = give * (double)((Slime)event.getEntity()).getSize();
+				}
+	
+				this.plugin.eco.depositPlayer(event.getEntity().getKiller().getName(), give);
+				
+				event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
+			} else {
+				this.plugin.getLogger().warning("Unkown monster type: " + event.getEntityType().getName());
+			}
+		} catch(IllegalArgumentException e)
 		{
-			if(!event.getEntity().getKiller().hasPermission("bd.loot." + event.getEntityType().getName()))
-				return;
-
-			double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
-			
-			if(Double.compare(give, 0.0) == 0)
-				return;
-			
-			if(event.getEntity() instanceof Slime)
-				give = give * (double)((Slime)event.getEntity()).getSize();
-
-			this.plugin.eco.depositPlayer(event.getEntity().getKiller().getName(), give);
-			
-			event.getEntity().getKiller().sendMessage("Received " + ChatColor.GOLD + "$" + give + " for killing " + event.getEntityType().getName());
-		} else {
-			this.plugin.getLogger().warning("Unkown monster type: " + event.getEntityType().getName());
+			this.plugin.getLogger().warning("Unknown monster type: " + event.getEntityType().getName());
 		}
 	}
 }
