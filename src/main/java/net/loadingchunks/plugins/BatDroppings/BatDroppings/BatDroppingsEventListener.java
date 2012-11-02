@@ -42,17 +42,12 @@ public class BatDroppingsEventListener implements Listener {
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
 	{	
-		this.plugin.getLogger().info("Died: " + event.getEntityType().getName());
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
-		this.plugin.getLogger().info("Killed: " + event.getEntityType().getName());
-		
 		if(!(event.getEntity() instanceof LivingEntity))
 			return;
-		
-		this.plugin.getLogger().info("Monster Died: " + event.getEntityType().getName());
-		
+				
 		try {
 			if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
 			{
@@ -64,9 +59,8 @@ public class BatDroppingsEventListener implements Listener {
 				if(Double.compare(give, 0.0) == 0)
 					return;
 				
-				if(event.getEntityType().getName().)
+				if(event.getEntity() instanceof Slime)
 				{
-					this.plugin.getLogger().info("Slime.");
 					give = give * (double)((Slime)event.getEntity()).getSize();
 				}
 	
