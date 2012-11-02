@@ -46,8 +46,12 @@ public class BatDroppingsEventListener implements Listener {
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
+		this.plugin.getLogger().info("Killed: " + event.getEntityType().getName());
+		
 		if(!(event.getEntity() instanceof Monster) && !(event.getEntity() instanceof Animals))
 			return;
+		
+		this.plugin.getLogger().info("Monster Died: " + event.getEntityType().getName());
 		
 		try {
 			if(LivingEntities.valueOf(event.getEntityType().getName().toUpperCase()) != null)
