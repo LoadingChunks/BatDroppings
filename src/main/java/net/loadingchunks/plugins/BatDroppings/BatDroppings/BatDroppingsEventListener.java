@@ -43,6 +43,9 @@ public class BatDroppingsEventListener implements Listener {
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event)
 	{	
+		if(event.getEntity() == null)
+			return;
+
 		if(event.getEntity().getKiller() == null || !(event.getEntity().getKiller() instanceof Player) || !event.getEntity().getKiller().isOnline())
 			return;
 		
