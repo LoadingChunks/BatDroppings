@@ -17,19 +17,11 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-
-import org.bukkit.plugin.java.JavaPlugin;
-
-import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class BatDroppingsEventListener implements Listener {
@@ -53,6 +45,9 @@ public class BatDroppingsEventListener implements Listener {
 			return;
 		
 		if(event.getEntity() instanceof Player)
+			return;
+		
+		if(this.plugin.getConfig().getStringList("blacklist").contains(event.getEntity().getWorld()))
 			return;
 				
 		try {
