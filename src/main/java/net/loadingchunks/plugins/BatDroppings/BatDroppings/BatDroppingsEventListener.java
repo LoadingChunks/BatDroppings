@@ -17,12 +17,17 @@ package net.loadingchunks.plugins.BatDroppings.BatDroppings;
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.util.List;
+
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.metadata.MetadataValue;
 
 public class BatDroppingsEventListener implements Listener {
 
@@ -30,6 +35,11 @@ public class BatDroppingsEventListener implements Listener {
 
 	public BatDroppingsEventListener(BatDroppings plugin) {
 		this.plugin = plugin;
+	}
+	
+	@EventHandler
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+		event.getEntity().setMetadata("spawnreason", new SpawnMeta(plugin, event.getSpawnReason()));
 	}
 	
 	@EventHandler
@@ -46,6 +56,17 @@ public class BatDroppingsEventListener implements Listener {
 		
 		if(event.getEntity() instanceof Player)
 			return;
+		
+		if(event.getEntity().hasMetadata("spawnreason") && plugin.getConfig().getBoolean("antispawner")) {
+			List<MetadataValue> values = event.getEntity().getMetadata("spawnreason");
+			for(MetadataValue value : values) {
+				if(value.getOwningPlugin() == plugin) {
+					SpawnMeta smeta = (SpawnMeta)value;
+					if(smeta.asSpawnReason() == SpawnReason.SPAWNER)
+						return;
+				}
+			}
+		}
 		
 		if(this.plugin.getConfig().getStringList("blacklist").contains(event.getEntity().getWorld()))
 			return;
