@@ -50,6 +50,7 @@ public class BatDroppings extends JavaPlugin {
 		
 		this.getConfig().addDefault("modifiers.slime", 0.5);
 		this.getConfig().addDefault("maxmoney", 25000);
+		this.getConfig().addDefault("antispawner", true);
 		
 		this.getConfig().options().copyDefaults(true);
 		this.saveConfig();
