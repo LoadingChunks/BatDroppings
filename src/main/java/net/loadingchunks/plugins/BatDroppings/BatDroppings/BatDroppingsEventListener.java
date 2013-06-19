@@ -39,7 +39,7 @@ public class BatDroppingsEventListener implements Listener {
 	
 	@EventHandler
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
-		event.getEntity().setMetadata("spawnreason", new SpawnMeta(plugin, event.getSpawnReason()));
+		event.getEntity().setMetadata("spawnreason", new SpawnMeta(this.plugin, event.getSpawnReason()));
 	}
 	
 	@EventHandler
