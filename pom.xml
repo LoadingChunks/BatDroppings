@@ -4,7 +4,7 @@
 	<groupId>net.loadingchunks.plugins.BatDroppings</groupId>
 	<artifactId>BatDroppings</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 	<name>BatDroppings</name>
 	<url>http://maven.apache.org</url>
 	

@@ -1,6 +1,6 @@
 name: BatDroppings
 main: net.loadingchunks.plugins.BatDroppings.BatDroppings.BatDroppings
-version: 0.1
+version: 1.5
 depend: [Vault]
 author: Cue
 website: http://loadingchunks.net
