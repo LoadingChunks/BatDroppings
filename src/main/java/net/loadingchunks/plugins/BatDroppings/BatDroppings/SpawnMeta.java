@@ -9,9 +9,9 @@ public class SpawnMeta implements MetadataValue {
 	SpawnReason reason;
 	BatDroppings plugin;
 	
-	public SpawnMeta(BatDroppings plugin, SpawnReason lreason) {
+	public SpawnMeta(BatDroppings lplugin, SpawnReason lreason) {
 		reason = lreason;
-		plugin = plugin;
+		this.plugin = lplugin;
 	}
 
 	public boolean asBoolean() {
