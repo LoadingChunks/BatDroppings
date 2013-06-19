@@ -33,13 +33,16 @@ public class BatDroppingsEventListener implements Listener {
 
 	private BatDroppings plugin;
 
-	public BatDroppingsEventListener(BatDroppings plugin) {
-		this.plugin = plugin;
+	public BatDroppingsEventListener(BatDroppings lplugin) {
+		this.plugin = lplugin;
 	}
 	
 	@EventHandler
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
-		event.getEntity().setMetadata("spawnreason", new SpawnMeta(this.plugin, event.getSpawnReason()));
+		if(plugin == null)
+			plugin.getLogger().warning("Plugin was null when entity spawned!");
+		else
+			event.getEntity().setMetadata("spawnreason", new SpawnMeta(this.plugin, event.getSpawnReason()));
 	}
 	
 	@EventHandler

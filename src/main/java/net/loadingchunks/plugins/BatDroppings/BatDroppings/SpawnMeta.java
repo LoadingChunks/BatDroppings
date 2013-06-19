@@ -7,9 +7,11 @@ import org.bukkit.plugin.Plugin;
 public class SpawnMeta implements MetadataValue {
 	
 	SpawnReason reason;
+	BatDroppings plugin;
 	
 	public SpawnMeta(BatDroppings plugin, SpawnReason lreason) {
 		reason = lreason;
+		plugin = plugin;
 	}
 
 	public boolean asBoolean() {
@@ -45,7 +47,7 @@ public class SpawnMeta implements MetadataValue {
 	}
 
 	public Plugin getOwningPlugin() {
-		return null;
+		return plugin;
 	}
 
 	public void invalidate() {
