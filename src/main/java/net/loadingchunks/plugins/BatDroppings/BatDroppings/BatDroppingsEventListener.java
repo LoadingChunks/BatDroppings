@@ -80,7 +80,7 @@ public class BatDroppingsEventListener implements Listener {
 				if(!event.getEntity().getKiller().hasPermission("bd.loot." + event.getEntityType().getName()))
 					return;
 				
-				if(this.plugin.eco.getBalance(event.getEntity().getKiller().getName()) > this.plugin.getConfig().getDouble("maxmoney"))
+				if(this.plugin.eco.getBalance(event.getEntity().getKiller().getName()) > this.plugin.getConfig().getDouble("maxmoney") && this.plugin.getConfig().getDouble("maxmoney") > 0.0)
 					return;
 	
 				double give = this.plugin.getConfig().getDouble("drops." + event.getEntityType().getName().toUpperCase());
